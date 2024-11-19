@@ -9,9 +9,11 @@ import com.sky.context.BaseContext;
 import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
 import com.sky.dto.EmployeePageQueryDTO;
+import com.sky.dto.PasswordEditDTO;
 import com.sky.entity.Employee;
 import com.sky.exception.AccountLockedException;
 import com.sky.exception.AccountNotFoundException;
+import com.sky.exception.PasswordEditFailedException;
 import com.sky.exception.PasswordErrorException;
 import com.sky.mapper.EmployeeMapper;
 import com.sky.result.PageResult;
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -122,6 +125,26 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setUpdateTime(LocalDateTime.now());
         employee.setUpdateUser(BaseContext.getCurrentId());
         employeeMapper.update(employee);
+    }
+
+    @Override
+    public void changePassword(PasswordEditDTO passwordEditDTO) {
+        Long id = BaseContext.getCurrentId();
+        Employee employee=employeeMapper.getById(id);
+        String oldPassword = passwordEditDTO.getOldPassword();
+        oldPassword=DigestUtils.md5DigestAsHex(oldPassword.getBytes());
+        if (Objects.equals(oldPassword, employee.getPassword())){
+            String newPassword= passwordEditDTO.getNewPassword();
+            newPassword=DigestUtils.md5DigestAsHex(newPassword.getBytes());
+            employee.setPassword(newPassword);
+            employee.setUpdateTime(LocalDateTime.now());
+            employee.setUpdateUser(BaseContext.getCurrentId());
+            employeeMapper.update(employee);
+        }
+        else{
+            throw new PasswordEditFailedException(MessageConstant.PASSWORD_ERROR);
+        }
+
     }
 
 
