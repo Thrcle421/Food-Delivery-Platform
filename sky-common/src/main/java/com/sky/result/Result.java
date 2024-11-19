@@ -9,6 +9,7 @@ import java.io.Serializable;
  * @param <T>
  */
 @Data
+//<T> 表示 Result 类可以存储任何类型的数据
 public class Result<T> implements Serializable {
 
     private Integer code; //编码：1成功，0和其它数字为失败
