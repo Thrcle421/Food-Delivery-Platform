@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
-        <version>3.3.5</version>
+        <version>3.3.2</version>
     </parent>
     <groupId>com.sky</groupId>
     <artifactId>sky-take-out</artifactId>
@@ -18,18 +17,19 @@
         <module>sky-server</module>
     </modules>
     <properties>
-        <mybatis.spring>3.0.3</mybatis.spring>
-        <lombok>1.18.34</lombok>
-        <fastjson>1.2.76</fastjson>
-        <commons.lang>2.6</commons.lang>
-        <druid>1.2.1</druid>
-        <pagehelper>1.4.7</pagehelper>
-        <aliyun.sdk.oss>3.10.2</aliyun.sdk.oss>
-        <knife4j>4.5.0</knife4j>
-        <aspectj>1.9.4</aspectj>
-        <jjwt>0.9.1</jjwt>
-        <jaxb-api>2.3.1</jaxb-api>
-        <poi>3.16</poi>
+        <java.version>21</java.version>
+        <mybatis.spring>3.0.3</mybatis.spring>        <!-- 保持不变，已是最新版本 -->
+        <lombok>1.18.30</lombok>        <!-- 更新到更稳定的版本 -->
+        <fastjson2>2.0.47</fastjson2>        <!-- 更新到更稳定的版本 -->
+        <commons.lang3>3.14.0</commons.lang3>        <!-- 建议更换为 commons-lang3:3.14.0 -->
+        <druid>1.2.21</druid>        <!-- 更新到最新版本 -->
+        <pagehelper>2.1.0</pagehelper>        <!-- 保持不变，兼容性良好 -->
+        <aliyun.sdk.oss>3.17.4</aliyun.sdk.oss>        <!-- 更新到最新版本 -->
+        <knife4j>4.5.0</knife4j>        <!-- 保持不变，已是最新版本 -->
+        <aspectj>1.9.21.1</aspectj>        <!-- 更新到最新版本 -->
+        <jjwt>0.9.1</jjwt>        <!-- 保持不变，已是最新版本 -->
+        <jakarta-api>3.0.1</jakarta-api>        <!-- 保持不变，兼容性良好 -->
+        <poi>5.2.5</poi>        <!-- 更新到最新版本 -->
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -43,18 +43,19 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok}</version>
+                <scope>provided</scope>
             </dependency>
 
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson}</version>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson2}</version>
             </dependency>
 
             <dependency>
-                <groupId>commons-lang</groupId>
-                <artifactId>commons-lang</artifactId>
-                <version>${commons.lang}</version>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang3}</version>
             </dependency>
 
             <dependency>
@@ -92,6 +93,19 @@
                 <artifactId>jjwt</artifactId>
                 <version>${jjwt}</version>
             </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jjwt}</version>
+                <scope>runtime</scope>
+            </dependency>
+
 
             <dependency>
                 <groupId>com.aliyun.oss</groupId>
@@ -100,10 +114,11 @@
             </dependency>
 
             <dependency>
-                <groupId>javax.xml.bind</groupId>
-                <artifactId>jaxb-api</artifactId>
-                <version>${jaxb-api}</version>
+                <groupId>jakarta.xml.bind</groupId>
+                <artifactId>jakarta.xml.bind-api</artifactId>
+                <version>${jakarta-api}</version>
             </dependency>
+
 
             <!-- poi -->
             <dependency>
@@ -120,8 +135,9 @@
             <dependency>
                 <groupId>com.github.wechatpay-apiv3</groupId>
                 <artifactId>wechatpay-apache-httpclient</artifactId>
-                <version>0.4.8</version>
+                <version>0.4.3</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 </project>

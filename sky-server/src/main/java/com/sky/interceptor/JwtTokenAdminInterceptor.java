@@ -11,10 +11,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 
 /**
  * jwt令牌校验的拦截器
@@ -45,7 +44,8 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
      * @throws Exception 异常
      */
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws Exception {
         log.info("进入拦截器 preHandle 方法");
         log.info("请求URI: {}", request.getRequestURI());
         log.info("请求方法: {}", request.getMethod());
