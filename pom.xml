@@ -18,18 +18,18 @@
     </modules>
     <properties>
         <java.version>21</java.version>
-        <mybatis.spring>3.0.3</mybatis.spring>        <!-- 保持不变，已是最新版本 -->
-        <lombok>1.18.30</lombok>        <!-- 更新到更稳定的版本 -->
-        <fastjson2>2.0.47</fastjson2>        <!-- 更新到更稳定的版本 -->
-        <commons.lang3>3.14.0</commons.lang3>        <!-- 建议更换为 commons-lang3:3.14.0 -->
-        <druid>1.2.21</druid>        <!-- 更新到最新版本 -->
-        <pagehelper>2.1.0</pagehelper>        <!-- 保持不变，兼容性良好 -->
-        <aliyun.sdk.oss>3.17.4</aliyun.sdk.oss>        <!-- 更新到最新版本 -->
-        <knife4j>4.5.0</knife4j>        <!-- 保持不变，已是最新版本 -->
-        <aspectj>1.9.21.1</aspectj>        <!-- 更新到最新版本 -->
-        <jjwt>0.9.1</jjwt>        <!-- 保持不变，已是最新版本 -->
-        <jakarta-api>3.0.1</jakarta-api>        <!-- 保持不变，兼容性良好 -->
-        <poi>5.2.5</poi>        <!-- 更新到最新版本 -->
+        <mybatis.spring>3.0.3</mybatis.spring>
+        <lombok>1.18.30</lombok>
+        <fastjson2>2.0.47</fastjson2>
+        <commons.lang3>3.14.0</commons.lang3>
+        <druid>1.2.21</druid>
+        <pagehelper>2.1.0</pagehelper>
+        <aliyun.sdk.oss>3.17.4</aliyun.sdk.oss>
+        <knife4j>4.5.0</knife4j>
+        <aspectj>1.9.21.1</aspectj>
+        <jjwt>0.9.1</jjwt>
+        <jakarta-api>3.0.1</jakarta-api>
+        <poi>5.2.5</poi>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -92,18 +92,6 @@
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
                 <version>${jjwt}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt-impl</artifactId>
-                <version>${jjwt}</version>
-                <scope>runtime</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt-jackson</artifactId>
-                <version>${jjwt}</version>
-                <scope>runtime</scope>
             </dependency>
 
 
