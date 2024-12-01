@@ -1,0 +1,32 @@
+[5932] 30 Nov 21:40:06.802 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[5932] 30 Nov 21:40:06.802 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=5932, just started
+[5932] 30 Nov 21:40:06.802 # Configuration loaded
+[5932] 30 Nov 21:40:06.804 # Could not create server TCP listening socket 127.0.0.1:6379: bind: 在一个非套接字上尝试了一个操作。
+[13860] 30 Nov 21:56:36.772 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[13860] 30 Nov 21:56:36.772 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=13860, just started
+[13860] 30 Nov 21:56:36.772 # Configuration loaded
+[13860] 30 Nov 21:56:36.775 # Could not create server TCP listening socket 127.0.0.1:6379: bind: 在一个非套接字上尝试了一个操作。
+[18848] 30 Nov 21:57:54.155 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[18848] 30 Nov 21:57:54.155 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=18848, just started
+[18848] 30 Nov 21:57:54.155 # Configuration loaded
+[18848] 30 Nov 21:57:54.158 # Could not create server TCP listening socket 127.0.0.1:6379: bind: 在一个非套接字上尝试了一个操作。
+[7764] 30 Nov 22:11:03.396 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[7764] 30 Nov 22:11:03.396 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=7764, just started
+[7764] 30 Nov 22:11:03.396 # Configuration loaded
+[7764] 30 Nov 22:11:03.399 * Running mode=standalone, port=6379.
+[7764] 30 Nov 22:11:03.400 # Server initialized
+[7764] 30 Nov 22:11:03.400 * Ready to accept connections
+[7764] 30 Nov 22:11:05.865 * Replica 127.0.0.1:6380 asks for synchronization
+[7764] 30 Nov 22:11:05.865 * Full resync requested by replica 127.0.0.1:6380
+[7764] 30 Nov 22:11:05.865 * Starting BGSAVE for SYNC with target: disk
+[7764] 30 Nov 22:11:05.874 * Background saving started by pid 17172
+[7764] 30 Nov 22:11:06.006 # fork operation complete
+[7764] 30 Nov 22:11:06.015 * Background saving terminated with success
+[7764] 30 Nov 22:11:06.018 * Synchronization with replica 127.0.0.1:6380 succeeded
+[7764] 30 Nov 22:11:07.825 * Replica 127.0.0.1:6381 asks for synchronization
+[7764] 30 Nov 22:11:07.825 * Full resync requested by replica 127.0.0.1:6381
+[7764] 30 Nov 22:11:07.825 * Starting BGSAVE for SYNC with target: disk
+[7764] 30 Nov 22:11:07.833 * Background saving started by pid 23856
+[7764] 30 Nov 22:11:07.967 # fork operation complete
+[7764] 30 Nov 22:11:07.975 * Background saving terminated with success
+[7764] 30 Nov 22:11:07.977 * Synchronization with replica 127.0.0.1:6381 succeeded

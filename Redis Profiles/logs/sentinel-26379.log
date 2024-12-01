@@ -1,0 +1,31 @@
+[15128] 30 Nov 19:41:39.669 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[15128] 30 Nov 19:41:39.669 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=15128, just started
+[15128] 30 Nov 19:41:39.669 # Configuration loaded
+[15128] 30 Nov 19:41:39.673 * Running mode=sentinel, port=26379.
+[15128] 30 Nov 19:41:39.674 # Sentinel ID is 4d3a3c70f189ef1519c3ddef60120a52113aa988
+[15128] 30 Nov 19:41:39.674 # +monitor master mymaster 127.0.0.1 6379 quorum 2
+[15056] 30 Nov 21:02:18.065 # 
+*** FATAL CONFIG FILE ERROR ***
+
+[15056] 30 Nov 21:02:18.065 # Reading the configuration file, at line 14
+
+[15056] 30 Nov 21:02:18.065 # >>> 'sentinel down-after-milliseconds mymaster 5000    # 5秒未响应判定为主观下线'
+
+[15056] 30 Nov 21:02:18.066 # Unrecognized sentinel configuration statement.
+
+[15128] 30 Nov 21:17:27.652 # +sdown master mymaster 127.0.0.1 6379
+[15128] 30 Nov 21:18:38.196 * +reboot master mymaster 127.0.0.1 6379
+[15128] 30 Nov 21:18:38.303 # -sdown master mymaster 127.0.0.1 6379
+[15128] 30 Nov 21:19:00.359 # +sdown master mymaster 127.0.0.1 6379
+[1028] 30 Nov 21:19:06.332 # 
+*** FATAL CONFIG FILE ERROR ***
+
+[1028] 30 Nov 21:19:06.332 # Reading the configuration file, at line 14
+
+[1028] 30 Nov 21:19:06.332 # >>> 'sentinel down-after-milliseconds mymaster 5000    # 5秒未响应判定为主观下线'
+
+[1028] 30 Nov 21:19:06.332 # Unrecognized sentinel configuration statement.
+
+[15128] 30 Nov 21:19:10.427 * +reboot master mymaster 127.0.0.1 6379
+[15128] 30 Nov 21:19:10.502 # -sdown master mymaster 127.0.0.1 6379
+[15128] 30 Nov 21:55:26.432 # +sdown master mymaster 127.0.0.1 6379
