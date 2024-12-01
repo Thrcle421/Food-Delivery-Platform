@@ -17,6 +17,7 @@ import com.sky.mapper.SetmealDishMapper;
 import com.sky.result.PageResult;
 import com.sky.service.CacheService;
 import com.sky.service.DishService;
+import com.sky.service.RedisSentinelService;
 import com.sky.vo.DishVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -26,6 +27,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @Service
 @Slf4j
@@ -41,140 +45,229 @@ public class DishServiceImpl implements DishService {
     private SetmealDishMapper setmealDishMapper;
 
     @Autowired
-    private CacheService cacheService;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    private RedisSentinelService redisSentinelService;
 
     private static final String DISH_KEY_PREFIX = "dish:";
 
+    /**
+     * 新增菜品和对应的口味
+     */
     @Override
     @Transactional
     public void saveWithFlavor(DishDTO dishDTO) {
-        Dish dish = new Dish();
-        BeanUtils.copyProperties(dishDTO, dish);
-        dishMapper.insert(dish);
-        Long dishId = dish.getId();
+        try {
+            // 1. 保存到数据库
+            Dish dish = new Dish();
+            BeanUtils.copyProperties(dishDTO, dish);
+            dishMapper.insert(dish);
+            Long dishId = dish.getId();
 
-        // 保存口味数据
-        List<DishFlavor> flavors = dishDTO.getFlavors();
-        if (flavors != null && !flavors.isEmpty()) {
-            flavors.forEach(flavor -> flavor.setDishId(dishId));
-            dishFlavorMapper.insertBatch(flavors);
+            List<DishFlavor> flavors = dishDTO.getFlavors();
+            if (flavors != null && !flavors.isEmpty()) {
+                flavors.forEach(flavor -> flavor.setDishId(dishId));
+                dishFlavorMapper.insertBatch(flavors);
+            }
+
+            // 2. 构建缓存数据
+            DishVO dishVO = new DishVO();
+            BeanUtils.copyProperties(dish, dishVO);
+            dishVO.setFlavors(flavors);
+
+            // 3. 写入Redis主节点
+            String key = DISH_KEY_PREFIX + dishId;
+            String currentMaster = redisSentinelService.getCurrentMaster();
+            log.info("当前Redis主节点: {}, 写入key: {}", currentMaster, key);
+            redisTemplate.opsForValue().set(key, dishVO);
+
+        } catch (Exception e) {
+            log.error("保存菜品失败: {}", e.getMessage());
+            throw new RuntimeException("保存菜品失败", e);
         }
-
-        DishVO dishVO = new DishVO();
-        BeanUtils.copyProperties(dish, dishVO);
-        dishVO.setFlavors(flavors);
-        String key = DISH_KEY_PREFIX + dishId;
-        cacheService.setWithBloomFilter(key, dishVO);
     }
 
+    /**
+     * 分页查询菜品
+     */
     @Override
     public PageResult pageQuery(DishPageQueryDTO dishPageQueryDTO) {
-        PageHelper.startPage(dishPageQueryDTO.getPage(), dishPageQueryDTO.getPageSize());
-        Page<DishVO> page = dishMapper.pageQuery(dishPageQueryDTO);
-        List<DishVO> dishList = page.getResult();
+        try {
+            PageHelper.startPage(dishPageQueryDTO.getPage(), dishPageQueryDTO.getPageSize());
+            Page<DishVO> page = dishMapper.pageQuery(dishPageQueryDTO);
 
-        // 对每个菜品进行缓存处理
-        if (dishList != null && !dishList.isEmpty()) {
-            dishList.forEach(dishVO -> {
-                String key = DISH_KEY_PREFIX + dishVO.getId();
-                // 检查缓存中是否存在,不存在才添加
-                if (cacheService.getWithBloomFilter(key, Dish.class) == null) {
-                    cacheService.setWithBloomFilter(key, dishVO);
+            // 对每个菜品进行缓存处理
+            if (page.getResult() != null && !page.getResult().isEmpty()) {
+                for (DishVO dishVO : page.getResult()) {
+                    String key = DISH_KEY_PREFIX + dishVO.getId();
+                    // 检查从节点中是否存在数据
+                    if (redisTemplate.opsForValue().get(key) == null) {
+                        // 不存在则写入主节点
+                        String currentMaster = redisSentinelService.getCurrentMaster();
+                        log.info("当前Redis主节点: {}, 写入key: {}", currentMaster, key);
+                        redisTemplate.opsForValue().set(key, dishVO);
+                    }
                 }
-            });
+            }
+
+            return new PageResult(page.getTotal(), page.getResult());
+        } catch (Exception e) {
+            log.error("分页查询失败: {}", e.getMessage());
+            throw new RuntimeException("分页查询失败", e);
         }
-        return new PageResult(page.getTotal(), page.getResult());
     }
 
+    /**
+     * 批量删除菜品
+     */
     @Override
     @Transactional
     public void deleteBatch(List<Long> ids) {
-        for (Long id : ids) {
-            Dish dish = dishMapper.getById(id);
-            if (dish.getStatus() == StatusConstant.ENABLE) {
-                throw new DeletionNotAllowedException(MessageConstant.DISH_ON_SALE);
+        try {
+            // 1. 检查菜品状态
+            for (Long id : ids) {
+                Dish dish = dishMapper.getById(id);
+                if (dish.getStatus() == StatusConstant.ENABLE) {
+                    throw new DeletionNotAllowedException(MessageConstant.DISH_ON_SALE);
+                }
             }
-        }
-        List<Long> setmealIds = setmealDishMapper.getSetmealDishIdsByDishIds(ids);
-        if (setmealIds != null && setmealIds.size() > 0) {
-            throw new DeletionNotAllowedException(MessageConstant.DISH_BE_RELATED_BY_SETMEAL);
-        }
-        for (Long id : ids) {
-            dishMapper.deleteById(id);
-            dishFlavorMapper.deleteByDishId(id);
-            String key = DISH_KEY_PREFIX + id;
-            redisTemplate.delete(key);
+
+            // 2. 检查是否被套餐关联
+            List<Long> setmealIds = setmealDishMapper.getSetmealDishIdsByDishIds(ids);
+            if (setmealIds != null && !setmealIds.isEmpty()) {
+                throw new DeletionNotAllowedException(MessageConstant.DISH_BE_RELATED_BY_SETMEAL);
+            }
+
+            // 3. 删除数据库数据
+            for (Long id : ids) {
+                dishMapper.deleteById(id);
+                dishFlavorMapper.deleteByDishId(id);
+
+                // 4. 删除Redis缓存
+                String key = DISH_KEY_PREFIX + id;
+                String currentMaster = redisSentinelService.getCurrentMaster();
+                log.info("当前Redis主节点: {}, 删除key: {}", currentMaster, key);
+                redisTemplate.delete(key);
+            }
+        } catch (Exception e) {
+            log.error("删除菜品失败: {}", e.getMessage());
+            throw e;
         }
     }
 
+    /**
+     * 根据id查询菜品和口味
+     */
     @Override
     public DishVO getByIdWithFlavor(Long id) {
         String key = DISH_KEY_PREFIX + id;
+        try {
+            // 1. 先从Redis从节点读取
+            Object cached = redisTemplate.opsForValue().get(key);
+            if (cached != null) {
+                log.info("从Redis从节点读取数据成功, key: {}", key);
+                // 使用ObjectMapper进行类型转换
+                ObjectMapper mapper = new ObjectMapper();
+                mapper.registerModule(new JavaTimeModule());
+                return mapper.convertValue(cached, DishVO.class);
+            }
 
-        // 从缓存获取
-        DishVO dishVO = (DishVO) cacheService.getWithBloomFilter(key, DishVO.class);
-        if (dishVO != null) {
-            return dishVO;
-        }
+            // 2. 缓存未命中，从数据库查询
+            Dish dish = dishMapper.getById(id);
+            if (dish != null) {
+                DishVO dishVO = new DishVO();
+                BeanUtils.copyProperties(dish, dishVO);
+                List<DishFlavor> flavors = dishFlavorMapper.getByDishId(id);
+                dishVO.setFlavors(flavors);
 
-        // 缓存未命中，查询完整信息
-        Dish dish = dishMapper.getById(id);
-        if (dish != null) {
-            dishVO = new DishVO();
-            BeanUtils.copyProperties(dish, dishVO);
-            // 查询口味信息
-            List<DishFlavor> flavors = dishFlavorMapper.getByDishId(id);
-            dishVO.setFlavors(flavors);
-            // 缓存VO对象
-            cacheService.setWithBloomFilter(key, dishVO);
+                // 3. 写入Redis主节点
+                String currentMaster = redisSentinelService.getCurrentMaster();
+                log.info("当前Redis主节点: {}, 写入key: {}", currentMaster, key);
+                redisTemplate.opsForValue().set(key, dishVO);
+
+                return dishVO;
+            }
+            return null;
+        } catch (Exception e) {
+            log.error("查询菜品失败: {}", e.getMessage());
+            throw new RuntimeException("查询菜品失败", e);
         }
-        return dishVO;
     }
 
+    /**
+     * 修改菜品和对应的口味
+     */
     @Override
     @Transactional
     public void updateWithFlavor(DishDTO dishDTO) {
-        Dish dish = new Dish();
-        BeanUtils.copyProperties(dishDTO, dish);
-        dishMapper.update(dish);
-        dishFlavorMapper.deleteByDishId(dishDTO.getId());
-        List<DishFlavor> dishFlavors = dishDTO.getFlavors();
-        DishVO dishVO = new DishVO();
-        BeanUtils.copyProperties(dish, dishVO);
-        if (dishFlavors != null && dishFlavors.size() > 0) {
-            for (DishFlavor f : dishFlavors) {
-                f.setDishId(dish.getId());
+        try {
+            // 1. 更新数据库
+            Dish dish = new Dish();
+            BeanUtils.copyProperties(dishDTO, dish);
+            dishMapper.update(dish);
+
+            // 2. 删除原有口味
+            dishFlavorMapper.deleteByDishId(dishDTO.getId());
+
+            // 3. 添加新的口味
+            List<DishFlavor> flavors = dishDTO.getFlavors();
+            if (flavors != null && !flavors.isEmpty()) {
+                flavors.forEach(flavor -> flavor.setDishId(dish.getId()));
+                dishFlavorMapper.insertBatch(flavors);
             }
-            dishFlavorMapper.insertBatch(dishFlavors);
-            dishVO.setFlavors(dishFlavors);
+
+            // 4. 更新Redis缓存
+            DishVO dishVO = new DishVO();
+            BeanUtils.copyProperties(dish, dishVO);
+            dishVO.setFlavors(flavors);
+
+            String key = DISH_KEY_PREFIX + dishDTO.getId();
+            String currentMaster = redisSentinelService.getCurrentMaster();
+            log.info("当前Redis主节点: {}, 更新key: {}", currentMaster, key);
+            redisTemplate.opsForValue().set(key, dishVO);
+
+        } catch (Exception e) {
+            log.error("修改菜品失败: {}", e.getMessage());
+            throw new RuntimeException("修改菜品失败", e);
         }
-        String key = DISH_KEY_PREFIX + dishDTO.getId();
-        cacheService.setWithBloomFilter(key, dishVO);
     }
 
+    /**
+     * 修改菜品状态
+     */
     @Override
     public void updateStatus(Integer status, Long id) {
-        Dish dish = new Dish();
-        dish.setStatus(status);
-        dish.setId(id);
-        dishMapper.update(dish);
-        String key = DISH_KEY_PREFIX + id;
-        DishVO dishVO = (DishVO) cacheService.getWithBloomFilter(key, DishVO.class);
-        if (dishVO != null) {
-            dishVO.setStatus(status);
-            cacheService.setWithBloomFilter(key, dishVO);
-        } else {
-            dishVO = new DishVO();
-            BeanUtils.copyProperties(dish, dishVO);
-            List<DishFlavor> dishFlavors = dishFlavorMapper.getByDishId(id);
-            dishVO.setFlavors(dishFlavors);
-            cacheService.setWithBloomFilter(key, dishVO);
+        try {
+            // 1. 更新数据库
+            Dish dish = new Dish();
+            dish.setStatus(status);
+            dish.setId(id);
+            dishMapper.update(dish);
+
+            // 2. 更新Redis缓存
+            String key = DISH_KEY_PREFIX + id;
+            Object cached = redisTemplate.opsForValue().get(key);
+            if (cached != null) {
+                // 使用ObjectMapper进行类型转换
+                ObjectMapper mapper = new ObjectMapper();
+                mapper.registerModule(new JavaTimeModule());
+                DishVO dishVO = mapper.convertValue(cached, DishVO.class);
+                dishVO.setStatus(status);
+
+                String currentMaster = redisSentinelService.getCurrentMaster();
+                log.info("当前Redis主节点: {}, 更新key: {}", currentMaster, key);
+                redisTemplate.opsForValue().set(key, dishVO);
+            }
+        } catch (Exception e) {
+            log.error("修改菜品状态失败: {}", e.getMessage());
+            throw new RuntimeException("修改菜品状态失败", e);
         }
     }
 
+    /**
+     * 根据分类id查询菜品
+     */
     @Override
     public List<Dish> getByCategoryId(Long categoryId) {
         Dish dish = new Dish();
@@ -182,5 +275,4 @@ public class DishServiceImpl implements DishService {
         dish.setStatus(StatusConstant.ENABLE);
         return dishMapper.list(dish);
     }
-
 }
