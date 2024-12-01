@@ -21,16 +21,16 @@ spring:
       database: ${spring.data.redis.database}
       port: ${spring.data.redis.port}
       timeout: 3000
-#      sentinel:
-#        master: mymaster
-#        nodes:
-#          - 127.0.0.1:26379
-#      lettuce:
-#        pool:
-#          max-active: 8
-#          max-idle: 8
-#          min-idle: 0
-#          max-wait: -1
+      sentinel:
+        master: mymaster
+        nodes: 127.0.0.1:26379
+        lettuce:
+          pool:
+            max-active: 8
+            max-idle: 8
+            min-idle: 0
+            max-wait: -1ms
+
 
 mybatis:
   #mapper配置文件

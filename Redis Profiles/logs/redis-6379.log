@@ -30,3 +30,97 @@
 [7764] 30 Nov 22:11:07.967 # fork operation complete
 [7764] 30 Nov 22:11:07.975 * Background saving terminated with success
 [7764] 30 Nov 22:11:07.977 * Synchronization with replica 127.0.0.1:6381 succeeded
+[7764] 01 Dec 00:59:48.954 # Connection with replica 127.0.0.1:6380 lost.
+[7764] 01 Dec 00:59:53.550 # Connection with replica 127.0.0.1:6381 lost.
+[7764] 01 Dec 00:59:55.625 # User requested shutdown...
+[7764] 01 Dec 00:59:55.625 * Calling fsync() on the AOF file.
+[7764] 01 Dec 00:59:55.629 # Redis is now ready to exit, bye bye...
+[31292] 01 Dec 01:00:11.745 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[31292] 01 Dec 01:00:11.745 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=31292, just started
+[31292] 01 Dec 01:00:11.745 # Configuration loaded
+[31292] 01 Dec 01:00:11.748 # Could not create server TCP listening socket 127.0.0.1:6379: bind: 在一个非套接字上尝试了一个操作。
+[26104] 01 Dec 01:00:31.265 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[26104] 01 Dec 01:00:31.265 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=26104, just started
+[26104] 01 Dec 01:00:31.265 # Configuration loaded
+[26104] 01 Dec 01:00:31.269 * Running mode=standalone, port=6379.
+[26104] 01 Dec 01:00:31.269 # Server initialized
+[26104] 01 Dec 01:00:31.270 * DB loaded from append only file: 0.000 seconds
+[26104] 01 Dec 01:00:31.270 * Ready to accept connections
+[26104] 01 Dec 01:00:33.770 * Replica 127.0.0.1:6380 asks for synchronization
+[26104] 01 Dec 01:00:33.770 * Full resync requested by replica 127.0.0.1:6380
+[26104] 01 Dec 01:00:33.770 * Starting BGSAVE for SYNC with target: disk
+[26104] 01 Dec 01:00:33.780 * Background saving started by pid 26644
+[26104] 01 Dec 01:00:33.876 # fork operation complete
+[26104] 01 Dec 01:00:33.889 * Background saving terminated with success
+[26104] 01 Dec 01:00:33.891 * Synchronization with replica 127.0.0.1:6380 succeeded
+[26104] 01 Dec 01:00:34.140 * Replica 127.0.0.1:6381 asks for synchronization
+[26104] 01 Dec 01:00:34.140 * Full resync requested by replica 127.0.0.1:6381
+[26104] 01 Dec 01:00:34.140 * Starting BGSAVE for SYNC with target: disk
+[26104] 01 Dec 01:00:34.150 * Background saving started by pid 13104
+[26104] 01 Dec 01:00:34.325 # fork operation complete
+[26104] 01 Dec 01:00:34.333 * Background saving terminated with success
+[26104] 01 Dec 01:00:34.335 * Synchronization with replica 127.0.0.1:6381 succeeded
+[15344] 01 Dec 01:03:34.162 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[15344] 01 Dec 01:03:34.162 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=15344, just started
+[15344] 01 Dec 01:03:34.162 # Configuration loaded
+[15344] 01 Dec 01:03:34.164 # Could not create server TCP listening socket 127.0.0.1:6379: bind: 在一个非套接字上尝试了一个操作。
+[21888] 01 Dec 01:03:52.538 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[21888] 01 Dec 01:03:52.538 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=21888, just started
+[21888] 01 Dec 01:03:52.538 # Configuration loaded
+[21888] 01 Dec 01:03:52.541 # Could not create server TCP listening socket 127.0.0.1:6379: bind: 在一个非套接字上尝试了一个操作。
+[28072] 01 Dec 01:04:22.767 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[28072] 01 Dec 01:04:22.767 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=28072, just started
+[28072] 01 Dec 01:04:22.767 # Configuration loaded
+[28072] 01 Dec 01:04:22.771 * Running mode=standalone, port=6379.
+[28072] 01 Dec 01:04:22.771 # Server initialized
+[28072] 01 Dec 01:04:22.772 * DB loaded from append only file: 0.001 seconds
+[28072] 01 Dec 01:04:22.772 * Ready to accept connections
+[28072] 01 Dec 01:04:25.799 * Replica 127.0.0.1:6380 asks for synchronization
+[28072] 01 Dec 01:04:25.799 * Full resync requested by replica 127.0.0.1:6380
+[28072] 01 Dec 01:04:25.800 * Starting BGSAVE for SYNC with target: disk
+[28072] 01 Dec 01:04:25.809 * Background saving started by pid 25328
+[28072] 01 Dec 01:04:25.907 # fork operation complete
+[28072] 01 Dec 01:04:25.917 * Background saving terminated with success
+[28072] 01 Dec 01:04:25.921 * Synchronization with replica 127.0.0.1:6380 succeeded
+[28072] 01 Dec 01:04:26.168 * Replica 127.0.0.1:6381 asks for synchronization
+[28072] 01 Dec 01:04:26.168 * Full resync requested by replica 127.0.0.1:6381
+[28072] 01 Dec 01:04:26.168 * Starting BGSAVE for SYNC with target: disk
+[28072] 01 Dec 01:04:26.177 * Background saving started by pid 27120
+[28072] 01 Dec 01:04:26.356 # fork operation complete
+[28072] 01 Dec 01:04:26.365 * Background saving terminated with success
+[28072] 01 Dec 01:04:26.366 * Synchronization with replica 127.0.0.1:6381 succeeded
+[28072] 01 Dec 01:04:33.510 # Connection with replica 127.0.0.1:6381 lost.
+[28072] 01 Dec 01:04:33.535 # Connection with replica 127.0.0.1:6380 lost.
+[28072] 01 Dec 01:04:33.561 # User requested shutdown...
+[28072] 01 Dec 01:04:33.561 * Calling fsync() on the AOF file.
+[28072] 01 Dec 01:04:33.561 # Redis is now ready to exit, bye bye...
+[10232] 01 Dec 01:04:43.144 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[10232] 01 Dec 01:04:43.144 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=10232, just started
+[10232] 01 Dec 01:04:43.144 # Configuration loaded
+[10232] 01 Dec 01:04:43.148 * Running mode=standalone, port=6379.
+[10232] 01 Dec 01:04:43.148 # Server initialized
+[10232] 01 Dec 01:04:43.149 * DB loaded from append only file: 0.001 seconds
+[10232] 01 Dec 01:04:43.149 * Ready to accept connections
+[30128] 01 Dec 01:04:43.483 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[30128] 01 Dec 01:04:43.483 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=30128, just started
+[30128] 01 Dec 01:04:43.483 # Configuration loaded
+[30128] 01 Dec 01:04:43.487 # Could not create server TCP listening socket 127.0.0.1:6379: bind: 在一个非套接字上尝试了一个操作。
+[10232] 01 Dec 01:04:45.806 * Replica 127.0.0.1:6380 asks for synchronization
+[10232] 01 Dec 01:04:45.806 * Full resync requested by replica 127.0.0.1:6380
+[10232] 01 Dec 01:04:45.806 * Starting BGSAVE for SYNC with target: disk
+[10232] 01 Dec 01:04:45.816 * Background saving started by pid 11936
+[10232] 01 Dec 01:04:45.965 # fork operation complete
+[10232] 01 Dec 01:04:45.976 * Background saving terminated with success
+[10232] 01 Dec 01:04:45.978 * Synchronization with replica 127.0.0.1:6380 succeeded
+[10232] 01 Dec 01:04:46.179 * Replica 127.0.0.1:6381 asks for synchronization
+[10232] 01 Dec 01:04:46.179 * Full resync requested by replica 127.0.0.1:6381
+[10232] 01 Dec 01:04:46.179 * Starting BGSAVE for SYNC with target: disk
+[10232] 01 Dec 01:04:46.189 * Background saving started by pid 16672
+[10232] 01 Dec 01:04:46.291 # fork operation complete
+[10232] 01 Dec 01:04:46.302 * Background saving terminated with success
+[10232] 01 Dec 01:04:46.303 * Synchronization with replica 127.0.0.1:6381 succeeded
+[10232] 01 Dec 01:21:02.577 # Connection with replica 127.0.0.1:6381 lost.
+[10232] 01 Dec 01:21:02.601 # Connection with replica 127.0.0.1:6380 lost.
+[10232] 01 Dec 01:21:02.627 # User requested shutdown...
+[10232] 01 Dec 01:21:02.627 * Calling fsync() on the AOF file.
+[10232] 01 Dec 01:21:02.628 # Redis is now ready to exit, bye bye...

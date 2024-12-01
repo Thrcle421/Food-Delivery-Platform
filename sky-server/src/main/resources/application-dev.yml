@@ -9,10 +9,15 @@ spring:
       host: localhost
       port: 6379
       database: 0
-      # 暂时注释掉哨兵配置
-      # sentinel:
-      #   master: mymaster
-      #   nodes: 127.0.0.1:26379
+      sentinel:
+        master: mymaster
+        nodes: 127.0.0.1:26379
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+          max-wait: -1ms
 
 aliyun:
   oss:

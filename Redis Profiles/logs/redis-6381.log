@@ -77,3 +77,179 @@
 [30456] 30 Nov 22:11:08.268 * Background AOF rewrite terminated with success
 [30456] 30 Nov 22:11:08.268 * Residual parent diff successfully flushed to the rewritten AOF (0.00 MB)
 [30456] 30 Nov 22:11:08.270 * Background AOF rewrite finished successfully
+[30456] 01 Dec 00:59:53.546 # User requested shutdown...
+[30456] 01 Dec 00:59:53.546 * Calling fsync() on the AOF file.
+[30456] 01 Dec 00:59:53.550 # Redis is now ready to exit, bye bye...
+[23708] 01 Dec 01:00:15.241 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[23708] 01 Dec 01:00:15.241 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=23708, just started
+[23708] 01 Dec 01:00:15.241 # Configuration loaded
+[23708] 01 Dec 01:00:15.245 * Running mode=standalone, port=6381.
+[23708] 01 Dec 01:00:15.245 # Server initialized
+[23708] 01 Dec 01:00:15.245 * Reading RDB preamble from AOF file...
+[23708] 01 Dec 01:00:15.245 * Reading the remaining AOF tail...
+[23708] 01 Dec 01:00:15.245 * DB loaded from append only file: 0.001 seconds
+[23708] 01 Dec 01:00:15.245 * Ready to accept connections
+[23708] 01 Dec 01:00:15.245 * Connecting to MASTER 127.0.0.1:6379
+[23708] 01 Dec 01:00:15.246 * MASTER <-> REPLICA sync started
+[23708] 01 Dec 01:00:15.246 * Non blocking connect for SYNC fired the event.
+[23708] 01 Dec 01:00:15.246 * Master replied to PING, replication can continue...
+[23708] 01 Dec 01:00:15.247 * Partial resynchronization not possible (no cached master)
+[23708] 01 Dec 01:00:15.258 * Full resync from master: b25ac5cafdb4374c710b8466f03a301bfda53aef:0
+[23708] 01 Dec 01:00:15.469 * MASTER <-> REPLICA sync: receiving 5487 bytes from master
+[23708] 01 Dec 01:00:15.470 * MASTER <-> REPLICA sync: Flushing old data
+[23708] 01 Dec 01:00:15.470 * MASTER <-> REPLICA sync: Loading DB in memory
+[23708] 01 Dec 01:00:15.471 * MASTER <-> REPLICA sync: Finished with success
+[23708] 01 Dec 01:00:15.482 * Background append only file rewriting started by pid 10772
+[23708] 01 Dec 01:00:15.566 * AOF rewrite child asks to stop sending diffs.
+[23708] 01 Dec 01:00:15.676 # fork operation complete
+[23708] 01 Dec 01:00:15.688 * Background AOF rewrite terminated with success
+[23708] 01 Dec 01:00:15.688 * Residual parent diff successfully flushed to the rewritten AOF (0.00 MB)
+[23708] 01 Dec 01:00:15.691 * Background AOF rewrite finished successfully
+[23708] 01 Dec 01:00:26.297 # User requested shutdown...
+[23708] 01 Dec 01:00:26.297 * Calling fsync() on the AOF file.
+[23708] 01 Dec 01:00:26.297 # Redis is now ready to exit, bye bye...
+[1680] 01 Dec 01:00:34.135 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[1680] 01 Dec 01:00:34.135 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=1680, just started
+[1680] 01 Dec 01:00:34.135 # Configuration loaded
+[1680] 01 Dec 01:00:34.139 * Running mode=standalone, port=6381.
+[1680] 01 Dec 01:00:34.139 # Server initialized
+[1680] 01 Dec 01:00:34.139 * Reading RDB preamble from AOF file...
+[1680] 01 Dec 01:00:34.139 * Reading the remaining AOF tail...
+[1680] 01 Dec 01:00:34.139 * DB loaded from append only file: 0.000 seconds
+[1680] 01 Dec 01:00:34.139 * Ready to accept connections
+[1680] 01 Dec 01:00:34.139 * Connecting to MASTER 127.0.0.1:6379
+[1680] 01 Dec 01:00:34.140 * MASTER <-> REPLICA sync started
+[1680] 01 Dec 01:00:34.140 * Non blocking connect for SYNC fired the event.
+[1680] 01 Dec 01:00:34.140 * Master replied to PING, replication can continue...
+[1680] 01 Dec 01:00:34.140 * Partial resynchronization not possible (no cached master)
+[1680] 01 Dec 01:00:34.150 * Full resync from master: d30331ae3efe24b4194c495828385e77ca7cbf91:0
+[1680] 01 Dec 01:00:34.335 * MASTER <-> REPLICA sync: receiving 6686 bytes from master
+[1680] 01 Dec 01:00:34.336 * MASTER <-> REPLICA sync: Flushing old data
+[1680] 01 Dec 01:00:34.337 * MASTER <-> REPLICA sync: Loading DB in memory
+[1680] 01 Dec 01:00:34.337 * MASTER <-> REPLICA sync: Finished with success
+[1680] 01 Dec 01:00:34.346 * Background append only file rewriting started by pid 3944
+[1680] 01 Dec 01:00:34.450 * AOF rewrite child asks to stop sending diffs.
+[1680] 01 Dec 01:00:34.561 # fork operation complete
+[1680] 01 Dec 01:00:34.573 * Background AOF rewrite terminated with success
+[1680] 01 Dec 01:00:34.573 * Residual parent diff successfully flushed to the rewritten AOF (0.00 MB)
+[1680] 01 Dec 01:00:34.576 * Background AOF rewrite finished successfully
+[1680] 01 Dec 01:03:04.507 # Connection with master lost.
+[1680] 01 Dec 01:03:04.507 * Caching the disconnected master state.
+[1680] 01 Dec 01:03:04.744 * Connecting to MASTER 127.0.0.1:6379
+[1680] 01 Dec 01:03:04.744 * MASTER <-> REPLICA sync started
+[29816] 01 Dec 01:03:37.251 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[29816] 01 Dec 01:03:37.251 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=29816, just started
+[29816] 01 Dec 01:03:37.251 # Configuration loaded
+[29816] 01 Dec 01:03:37.256 * Running mode=standalone, port=6381.
+[29816] 01 Dec 01:03:37.256 # Server initialized
+[29816] 01 Dec 01:03:37.256 * Reading RDB preamble from AOF file...
+[29816] 01 Dec 01:03:37.256 * Reading the remaining AOF tail...
+[29816] 01 Dec 01:03:37.256 * DB loaded from append only file: 0.000 seconds
+[29816] 01 Dec 01:03:37.257 * Ready to accept connections
+[29816] 01 Dec 01:03:37.257 * Connecting to MASTER 127.0.0.1:6379
+[29816] 01 Dec 01:03:37.257 * MASTER <-> REPLICA sync started
+[29816] 01 Dec 01:03:37.257 * Non blocking connect for SYNC fired the event.
+[29816] 01 Dec 01:03:37.257 * Master replied to PING, replication can continue...
+[29816] 01 Dec 01:03:37.257 * Partial resynchronization not possible (no cached master)
+[29816] 01 Dec 01:03:37.269 * Full resync from master: eb713a67ef1de3c08934b7c95cffdde051d8a8dd:0
+[29816] 01 Dec 01:03:37.438 * MASTER <-> REPLICA sync: receiving 5487 bytes from master
+[29816] 01 Dec 01:03:37.440 * MASTER <-> REPLICA sync: Flushing old data
+[29816] 01 Dec 01:03:37.440 * MASTER <-> REPLICA sync: Loading DB in memory
+[29816] 01 Dec 01:03:37.441 * MASTER <-> REPLICA sync: Finished with success
+[29816] 01 Dec 01:03:37.450 * Background append only file rewriting started by pid 24988
+[29816] 01 Dec 01:03:37.579 * AOF rewrite child asks to stop sending diffs.
+[29816] 01 Dec 01:03:37.687 # fork operation complete
+[29816] 01 Dec 01:03:37.696 * Background AOF rewrite terminated with success
+[29816] 01 Dec 01:03:37.696 * Residual parent diff successfully flushed to the rewritten AOF (0.00 MB)
+[29816] 01 Dec 01:03:37.699 * Background AOF rewrite finished successfully
+[29816] 01 Dec 01:03:41.598 # User requested shutdown...
+[29816] 01 Dec 01:03:41.598 * Calling fsync() on the AOF file.
+[29816] 01 Dec 01:03:41.598 # Redis is now ready to exit, bye bye...
+[30124] 01 Dec 01:03:55.187 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[30124] 01 Dec 01:03:55.187 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=30124, just started
+[30124] 01 Dec 01:03:55.187 # Configuration loaded
+[30124] 01 Dec 01:03:55.190 * Running mode=standalone, port=6381.
+[30124] 01 Dec 01:03:55.190 # Server initialized
+[30124] 01 Dec 01:03:55.191 * Reading RDB preamble from AOF file...
+[30124] 01 Dec 01:03:55.191 * Reading the remaining AOF tail...
+[30124] 01 Dec 01:03:55.191 * DB loaded from append only file: 0.000 seconds
+[30124] 01 Dec 01:03:55.191 * Ready to accept connections
+[30124] 01 Dec 01:03:55.191 * Connecting to MASTER 127.0.0.1:6379
+[30124] 01 Dec 01:03:55.191 * MASTER <-> REPLICA sync started
+[30124] 01 Dec 01:03:55.191 * Non blocking connect for SYNC fired the event.
+[30124] 01 Dec 01:03:55.191 * Master replied to PING, replication can continue...
+[30124] 01 Dec 01:03:55.192 * Partial resynchronization not possible (no cached master)
+[30124] 01 Dec 01:03:55.202 * Full resync from master: 42731d0323bf13a1d14174bebc39c5e9320ecd6b:0
+[30124] 01 Dec 01:03:55.399 * MASTER <-> REPLICA sync: receiving 5487 bytes from master
+[30124] 01 Dec 01:03:55.400 * MASTER <-> REPLICA sync: Flushing old data
+[30124] 01 Dec 01:03:55.401 * MASTER <-> REPLICA sync: Loading DB in memory
+[30124] 01 Dec 01:03:55.401 * MASTER <-> REPLICA sync: Finished with success
+[30124] 01 Dec 01:03:55.411 * Background append only file rewriting started by pid 22988
+[30124] 01 Dec 01:03:55.513 * AOF rewrite child asks to stop sending diffs.
+[30124] 01 Dec 01:03:55.621 # fork operation complete
+[30124] 01 Dec 01:03:55.628 * Background AOF rewrite terminated with success
+[30124] 01 Dec 01:03:55.629 * Residual parent diff successfully flushed to the rewritten AOF (0.00 MB)
+[30124] 01 Dec 01:03:55.631 * Background AOF rewrite finished successfully
+[30124] 01 Dec 01:04:15.615 # User requested shutdown...
+[30124] 01 Dec 01:04:15.615 * Calling fsync() on the AOF file.
+[30124] 01 Dec 01:04:15.616 # Redis is now ready to exit, bye bye...
+[28068] 01 Dec 01:04:26.162 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[28068] 01 Dec 01:04:26.163 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=28068, just started
+[28068] 01 Dec 01:04:26.163 # Configuration loaded
+[28068] 01 Dec 01:04:26.167 * Running mode=standalone, port=6381.
+[28068] 01 Dec 01:04:26.167 # Server initialized
+[28068] 01 Dec 01:04:26.167 * Reading RDB preamble from AOF file...
+[28068] 01 Dec 01:04:26.168 * Reading the remaining AOF tail...
+[28068] 01 Dec 01:04:26.168 * DB loaded from append only file: 0.001 seconds
+[28068] 01 Dec 01:04:26.168 * Ready to accept connections
+[28068] 01 Dec 01:04:26.168 * Connecting to MASTER 127.0.0.1:6379
+[28068] 01 Dec 01:04:26.168 * MASTER <-> REPLICA sync started
+[28068] 01 Dec 01:04:26.168 * Non blocking connect for SYNC fired the event.
+[28068] 01 Dec 01:04:26.168 * Master replied to PING, replication can continue...
+[28068] 01 Dec 01:04:26.168 * Partial resynchronization not possible (no cached master)
+[28068] 01 Dec 01:04:26.178 * Full resync from master: 6da34eb34e2644c39209bb056fa817f6c64dfcb2:0
+[28068] 01 Dec 01:04:26.366 * MASTER <-> REPLICA sync: receiving 6686 bytes from master
+[28068] 01 Dec 01:04:26.367 * MASTER <-> REPLICA sync: Flushing old data
+[28068] 01 Dec 01:04:26.368 * MASTER <-> REPLICA sync: Loading DB in memory
+[28068] 01 Dec 01:04:26.368 * MASTER <-> REPLICA sync: Finished with success
+[28068] 01 Dec 01:04:26.377 * Background append only file rewriting started by pid 7980
+[28068] 01 Dec 01:04:26.497 * AOF rewrite child asks to stop sending diffs.
+[28068] 01 Dec 01:04:26.608 # fork operation complete
+[28068] 01 Dec 01:04:26.616 * Background AOF rewrite terminated with success
+[28068] 01 Dec 01:04:26.616 * Residual parent diff successfully flushed to the rewritten AOF (0.00 MB)
+[28068] 01 Dec 01:04:26.619 * Background AOF rewrite finished successfully
+[28068] 01 Dec 01:04:33.509 # User requested shutdown...
+[28068] 01 Dec 01:04:33.509 * Calling fsync() on the AOF file.
+[28068] 01 Dec 01:04:33.510 # Redis is now ready to exit, bye bye...
+[31680] 01 Dec 01:04:46.173 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[31680] 01 Dec 01:04:46.174 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=31680, just started
+[31680] 01 Dec 01:04:46.174 # Configuration loaded
+[31680] 01 Dec 01:04:46.178 * Running mode=standalone, port=6381.
+[31680] 01 Dec 01:04:46.178 # Server initialized
+[31680] 01 Dec 01:04:46.178 * Reading RDB preamble from AOF file...
+[31680] 01 Dec 01:04:46.178 * Reading the remaining AOF tail...
+[31680] 01 Dec 01:04:46.178 * DB loaded from append only file: 0.000 seconds
+[31680] 01 Dec 01:04:46.178 * Ready to accept connections
+[31680] 01 Dec 01:04:46.178 * Connecting to MASTER 127.0.0.1:6379
+[31680] 01 Dec 01:04:46.179 * MASTER <-> REPLICA sync started
+[31680] 01 Dec 01:04:46.179 * Non blocking connect for SYNC fired the event.
+[31680] 01 Dec 01:04:46.179 * Master replied to PING, replication can continue...
+[31680] 01 Dec 01:04:46.179 * Partial resynchronization not possible (no cached master)
+[31680] 01 Dec 01:04:46.190 * Full resync from master: 8a9adca6863226ddce2abf46225d430ccd35e9eb:0
+[31680] 01 Dec 01:04:46.303 * MASTER <-> REPLICA sync: receiving 6686 bytes from master
+[31680] 01 Dec 01:04:46.304 * MASTER <-> REPLICA sync: Flushing old data
+[31680] 01 Dec 01:04:46.304 * MASTER <-> REPLICA sync: Loading DB in memory
+[31680] 01 Dec 01:04:46.305 * MASTER <-> REPLICA sync: Finished with success
+[31680] 01 Dec 01:04:46.315 * Background append only file rewriting started by pid 11324
+[31680] 01 Dec 01:04:46.508 * AOF rewrite child asks to stop sending diffs.
+[31680] 01 Dec 01:04:46.617 # fork operation complete
+[31680] 01 Dec 01:04:46.626 * Background AOF rewrite terminated with success
+[31680] 01 Dec 01:04:46.626 * Residual parent diff successfully flushed to the rewritten AOF (0.00 MB)
+[31680] 01 Dec 01:04:46.628 * Background AOF rewrite finished successfully
+[10008] 01 Dec 01:04:46.927 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[10008] 01 Dec 01:04:46.927 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=10008, just started
+[10008] 01 Dec 01:04:46.927 # Configuration loaded
+[10008] 01 Dec 01:04:46.929 # Could not create server TCP listening socket 127.0.0.1:6381: bind: 在一个非套接字上尝试了一个操作。
+[31680] 01 Dec 01:21:02.576 # User requested shutdown...
+[31680] 01 Dec 01:21:02.576 * Calling fsync() on the AOF file.
+[31680] 01 Dec 01:21:02.577 # Redis is now ready to exit, bye bye...

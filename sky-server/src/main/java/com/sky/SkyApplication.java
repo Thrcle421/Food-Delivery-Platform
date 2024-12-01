@@ -27,6 +27,10 @@ public class SkyApplication {
             log.info("连接状态: {}", connected ? "正常" : "异常");
 
             if (connected) {
+                boolean isSentinel = redisSentinelService.isSentinelMode();
+                log.info("Redis运行模式: {}", isSentinel ? "哨兵模式" : "单机/集群模式");
+
+                // 获取主从节点信息
                 String master = redisSentinelService.getCurrentMaster();
                 List<String> slaves = redisSentinelService.getSlaveNodes();
 
@@ -37,6 +41,15 @@ public class SkyApplication {
                     log.info("从节点列表:");
                     for (String slave : slaves) {
                         log.info("  - {}", slave);
+                    }
+                }
+
+                // 如果是哨兵模式，额外输出哨兵信息
+                if (isSentinel) {
+                    List<String> sentinels = redisSentinelService.getSentinelNodes();
+                    log.info("哨兵节点列表:");
+                    for (String sentinel : sentinels) {
+                        log.info("  - {}", sentinel);
                     }
                 }
             }

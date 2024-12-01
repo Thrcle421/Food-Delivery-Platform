@@ -29,3 +29,55 @@
 [15128] 30 Nov 21:19:10.427 * +reboot master mymaster 127.0.0.1 6379
 [15128] 30 Nov 21:19:10.502 # -sdown master mymaster 127.0.0.1 6379
 [15128] 30 Nov 21:55:26.432 # +sdown master mymaster 127.0.0.1 6379
+[5276] 01 Dec 01:00:16.877 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[5276] 01 Dec 01:00:16.878 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=5276, just started
+[5276] 01 Dec 01:00:16.878 # Configuration loaded
+[5276] 01 Dec 01:00:16.880 * Running mode=sentinel, port=26379.
+[5276] 01 Dec 01:00:16.882 # Sentinel ID is 305e2113f3175bb674ad80447c2377771fa6dfe0
+[5276] 01 Dec 01:00:16.882 # +monitor master mymaster 127.0.0.1 6379 quorum 1
+[5276] 01 Dec 01:00:16.883 * +slave slave 127.0.0.1:6380 127.0.0.1 6380 @ mymaster 127.0.0.1 6379
+[5276] 01 Dec 01:00:16.885 * +slave slave 127.0.0.1:6381 127.0.0.1 6381 @ mymaster 127.0.0.1 6379
+[5276] 01 Dec 01:00:26.273 # User requested shutdown...
+[5276] 01 Dec 01:00:26.273 # Sentinel is now ready to exit, bye bye...
+[10040] 01 Dec 01:00:35.711 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[10040] 01 Dec 01:00:35.711 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=10040, just started
+[10040] 01 Dec 01:00:35.711 # Configuration loaded
+[10040] 01 Dec 01:00:35.713 * Running mode=sentinel, port=26379.
+[10040] 01 Dec 01:00:35.713 # Sentinel ID is 305e2113f3175bb674ad80447c2377771fa6dfe0
+[10040] 01 Dec 01:00:35.713 # +monitor master mymaster 127.0.0.1 6379 quorum 1
+[9876] 01 Dec 01:03:38.876 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[9876] 01 Dec 01:03:38.876 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=9876, just started
+[9876] 01 Dec 01:03:38.876 # Configuration loaded
+[9876] 01 Dec 01:03:38.880 * Running mode=sentinel, port=26379.
+[9876] 01 Dec 01:03:38.880 # Sentinel ID is 305e2113f3175bb674ad80447c2377771fa6dfe0
+[9876] 01 Dec 01:03:38.880 # +monitor master mymaster 127.0.0.1 6379 quorum 1
+[9876] 01 Dec 01:03:41.574 # User requested shutdown...
+[9876] 01 Dec 01:03:41.574 # Sentinel is now ready to exit, bye bye...
+[14348] 01 Dec 01:03:56.781 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[14348] 01 Dec 01:03:56.781 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=14348, just started
+[14348] 01 Dec 01:03:56.781 # Configuration loaded
+[14348] 01 Dec 01:03:56.785 * Running mode=sentinel, port=26379.
+[14348] 01 Dec 01:03:56.785 # Sentinel ID is 305e2113f3175bb674ad80447c2377771fa6dfe0
+[14348] 01 Dec 01:03:56.785 # +monitor master mymaster 127.0.0.1 6379 quorum 1
+[14348] 01 Dec 01:04:15.592 # User requested shutdown...
+[14348] 01 Dec 01:04:15.592 # Sentinel is now ready to exit, bye bye...
+[5496] 01 Dec 01:04:27.760 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[5496] 01 Dec 01:04:27.760 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=5496, just started
+[5496] 01 Dec 01:04:27.760 # Configuration loaded
+[5496] 01 Dec 01:04:27.762 * Running mode=sentinel, port=26379.
+[5496] 01 Dec 01:04:27.762 # Sentinel ID is 305e2113f3175bb674ad80447c2377771fa6dfe0
+[5496] 01 Dec 01:04:27.762 # +monitor master mymaster 127.0.0.1 6379 quorum 1
+[5496] 01 Dec 01:04:33.484 # User requested shutdown...
+[5496] 01 Dec 01:04:33.484 # Sentinel is now ready to exit, bye bye...
+[25524] 01 Dec 01:04:47.771 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[25524] 01 Dec 01:04:47.771 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=25524, just started
+[25524] 01 Dec 01:04:47.771 # Configuration loaded
+[25524] 01 Dec 01:04:47.773 * Running mode=sentinel, port=26379.
+[25524] 01 Dec 01:04:47.774 # Sentinel ID is 305e2113f3175bb674ad80447c2377771fa6dfe0
+[25524] 01 Dec 01:04:47.774 # +monitor master mymaster 127.0.0.1 6379 quorum 1
+[23740] 01 Dec 01:04:48.152 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[23740] 01 Dec 01:04:48.152 # Redis version=5.0.14.1, bits=64, commit=ec77f72d, modified=0, pid=23740, just started
+[23740] 01 Dec 01:04:48.152 # Configuration loaded
+[23740] 01 Dec 01:04:48.154 # Could not create server TCP listening socket *:26379: bind: 在一个非套接字上尝试了一个操作。
+[25524] 01 Dec 01:21:02.551 # User requested shutdown...
+[25524] 01 Dec 01:21:02.551 # Sentinel is now ready to exit, bye bye...
