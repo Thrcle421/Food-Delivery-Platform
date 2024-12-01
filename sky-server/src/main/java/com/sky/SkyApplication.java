@@ -12,7 +12,7 @@ import jakarta.annotation.PostConstruct;
 import java.util.List;
 
 @SpringBootApplication
-@EnableTransactionManagement // 开启注解方式的事务管理
+@EnableTransactionManagement // Enable annotation-based transaction management
 @Slf4j
 public class SkyApplication {
 
@@ -21,40 +21,40 @@ public class SkyApplication {
 
     @PostConstruct
     public void init() {
-        log.info("========== Redis 连接状态检查 ==========");
+        log.info("========== Checking Redis Connection Status ==========");
         try {
             boolean connected = redisSentinelService.checkConnection();
-            log.info("连接状态: {}", connected ? "正常" : "异常");
+            log.info("Connection Status: {}", connected ? "Normal" : "Abnormal");
 
             if (connected) {
                 boolean isSentinel = redisSentinelService.isSentinelMode();
-                log.info("Redis运行模式: {}", isSentinel ? "哨兵模式" : "单机/集群模式");
+                log.info("Redis Running Mode: {}", isSentinel ? "Sentinel Mode" : "Standalone/Cluster Mode");
 
-                // 获取主从节点信息
+                // Get master and slave node information
                 String master = redisSentinelService.getCurrentMaster();
                 List<String> slaves = redisSentinelService.getSlaveNodes();
 
-                log.info("主节点: {}", master);
+                log.info("Master Node: {}", master);
                 if (slaves.isEmpty()) {
-                    log.info("从节点: 无");
+                    log.info("Slave Nodes: None");
                 } else {
-                    log.info("从节点列表:");
+                    log.info("Slave Node List:");
                     for (String slave : slaves) {
                         log.info("  - {}", slave);
                     }
                 }
 
-                // 如果是哨兵模式，额外输出哨兵信息
+                // If in sentinel mode, additionally output sentinel information
                 if (isSentinel) {
                     List<String> sentinels = redisSentinelService.getSentinelNodes();
-                    log.info("哨兵节点列表:");
+                    log.info("Sentinel Node List:");
                     for (String sentinel : sentinels) {
                         log.info("  - {}", sentinel);
                     }
                 }
             }
         } catch (Exception e) {
-            log.error("Redis检查失败: {}", e.getMessage());
+            log.error("Redis Check Failed: {}", e.getMessage());
         }
         log.info("======================================");
     }
